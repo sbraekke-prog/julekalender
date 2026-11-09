@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#5c0f14" />
+  <title>Julekalender til Snuppelupp ❤️</title>
+
+  <!-- Google Fonts med gode system-fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Dekorativt snødryss i bakgrunnen -->
+  <div class="snow-layer" aria-hidden="true"></div>
+
+  <!-- Test-modus-banner (vises kun ved ?test=true i URL) -->
+  <aside id="testBanner" class="test-banner" hidden>
+    <div class="test-banner__content">
+      <span class="test-banner__badge">🎄 Test-modus aktiv</span>
+      <p class="test-banner__text">Alle 24 luker kan åpnes nå før desember.</p>
+      <div class="test-banner__actions">
+        <button type="button" id="resetOpenedBtn" class="test-btn">Nullstill åpnede luker</button>
+        <a href="?" class="test-btn test-btn--secondary">Avslutt test-modus</a>
+      </div>
+    </div>
+  </aside>
+
+  <div class="page-wrapper">
+    <!-- Toppseksjon med tittel og dagens dato -->
+    <header class="hero-header">
+      <div class="hero-header__ornament" aria-hidden="true">✦ 🎄 ✦</div>
+      <h1 id="calendarTitle" class="hero-header__title">Julekalender til Snuppelupp</h1>
+      <p id="calendarSubtitle" class="hero-header__subtitle">
+        24 små glimt av hvorfor jeg er så glad i deg, Kiran ❤️
+      </p>
+
+      <div class="status-pill" aria-live="polite">
+        <span id="currentDateText" class="status-pill__date">Laster dato...</span>
+        <span class="status-pill__divider" aria-hidden="true">•</span>
+        <span id="openedProgressText" class="status-pill__progress">0 av 24 åpnet</span>
+      </div>
+    </header>
+
+    <!-- Flexbox-kalender med 24 randomiserte luker uten fast mønster -->
+    <main class="calendar-main">
+      <section
+        id="calendarContainer"
+        class="calendar-flexbox"
+        aria-label="Julekalender med 24 luker"
+      >
+        <!-- Lukene genereres dynamisk av script.js -->
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Laget med ❤️ til Kiran («Snuppelupp»)</p>
+    </footer>
+  </div>
+
+  <!-- Popup-modal for lukekortet: Tekst øverst og bilde nederst -->
+  <dialog id="doorDialog" class="door-dialog" closedby="any" aria-labelledby="cardTitle">
+    <article class="door-card">
+      <header class="door-card__header">
+        <span id="cardDayBadge" class="door-card__badge">Luke 1</span>
+        <button
+          type="button"
+          id="closeDialogBtn"
+          class="door-card__close"
+          aria-label="Lukk luke"
+        >
+          ✕
+        </button>
+      </header>
+
+      <!-- Tekst øverst -->
+      <div class="door-card__text-section">
+        <h2 id="cardTitle" class="door-card__title">1. desember</h2>
+        <div class="door-card__divider" aria-hidden="true">
+          <span>✦ ❤️ ✦</span>
+        </div>
+        <p id="cardText" class="door-card__text"></p>
+      </div>
+
+      <!-- Bilde nederst -->
+      <figure class="door-card__media">
+        <div class="door-card__image-frame">
+          <img
+            id="cardImage"
+            class="door-card__image"
+            src=""
+            alt=""
+            loading="lazy"
+          />
+        </div>
+      </figure>
+    </article>
+  </dialog>
+
+  <!-- Koselig beskjed-boble når man prøver å åpne en låst luke -->
+  <div id="toastMessage" class="toast-message" role="status" aria-live="polite" hidden></div>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
